@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>От запроса до сайта — TRUE AI AGENCY</title>
+  <meta name="description" content="Как мы прошли путь от анализа рынка до живого лендинга за одну сессию." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #F4EFE6;
+      --cream2: #EDE8DF;
+      --white: #FAFAF7;
+      --dark: #17130F;
+      --dark2: #2C2720;
+      --text: #1A1510;
+      --muted: #6B6560;
+      --border: #DDD8CF;
+      --orange: #C85E24;
+      --orange-light: #F0E8E0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--dark);
+      padding: 18px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #fff;
+    }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.6);
+      text-decoration: none; font-size: 13px;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-btn {
+      background: var(--orange);
+      color: #fff; padding: 8px 20px;
+      border-radius: 4px; font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .nav-btn:hover { opacity: .85; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark);
+      padding: 100px 48px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: end;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .hero-left {}
+    .hero-meta {
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: 500; line-height: 1.05;
+      color: #fff; letter-spacing: -1px;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--orange);
+    }
+    .hero-right {
+      padding-bottom: 8px;
+    }
+    .hero-right p {
+      font-size: 18px; line-height: 1.75;
+      color: rgba(255,255,255,.65);
+    }
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .hstat {}
+    .hstat .n {
+      font-family: 'EB Garamond', serif;
+      font-size: 36px; color: #fff; display: block; line-height: 1;
+    }
+    .hstat .l {
+      font-size: 12px; color: rgba(255,255,255,.4);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-top: 6px; display: block;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      max-width: 800px; margin: 0 auto;
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .intro p {
+      font-family: 'EB Garamond', serif;
+      font-size: 24px; line-height: 1.7;
+      color: var(--dark2);
+    }
+
+    /* ── STEPS ── */
+    .steps-header {
+      padding: 64px 48px 48px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .steps-header .eyebrow {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .steps-header h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 500; line-height: 1.15;
+    }
+
+    .step {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 48px 64px;
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-of-type { border-bottom: none; }
+
+    .step-num {
+      padding-top: 4px;
+    }
+    .step-num .num {
+      font-family: 'EB Garamond', serif;
+      font-size: 64px; line-height: 1;
+      color: var(--border);
+      display: block;
+    }
+    .step-num .step-tag {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--orange); margin-top: 8px; display: block;
+    }
+
+    .step-body h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 500; line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .step-body > p {
+      color: var(--muted); font-size: 16px; line-height: 1.8;
+      margin-bottom: 32px; max-width: 640px;
+    }
+
+    /* query block */
+    .query {
+      background: var(--dark);
+      border-radius: 8px; padding: 24px 28px;
+      margin-bottom: 32px;
+    }
+    .query-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.3); margin-bottom: 10px;
+    }
+    .query p {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px; font-style: italic;
+      color: rgba(255,255,255,.9); line-height: 1.5;
+    }
+
+    /* findings */
+    .findings {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; margin-bottom: 32px;
+    }
+    .finding {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 24px 20px;
+    }
+    .finding .heat { font-size: 18px; margin-bottom: 12px; }
+    .finding h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .finding p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .finding .tag {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 8px; display: block;
+    }
+
+    /* insight */
+    .insight {
+      background: var(--orange-light);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .insight-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 8px;
+    }
+    .insight p {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px; line-height: 1.55; color: var(--dark2);
+    }
+
+    /* apple model */
+    .apple-model {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden; margin-bottom: 32px;
+    }
+    .apple-model-head {
+      background: var(--dark); padding: 18px 24px;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .apple-row {
+      display: flex; align-items: stretch;
+      border-bottom: 1px solid var(--border);
+    }
+    .apple-row:last-child { border-bottom: none; }
+    .apple-left {
+      width: 160px; min-width: 160px;
+      background: var(--cream2); padding: 16px 20px;
+      border-right: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .apple-left .al-ico { font-size: 20px; margin-right: 10px; }
+    .apple-left span { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .apple-right { padding: 16px 20px; flex: 1; }
+    .apple-right .ar-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .apple-right .ar-desc { font-size: 13px; color: var(--muted); }
+    .apple-right .ar-price {
+      font-size: 13px; color: var(--orange);
+      font-weight: 500; margin-top: 4px;
+    }
+    .apple-row.main-row .apple-left { background: var(--orange); }
+    .apple-row.main-row .apple-left span { color: rgba(255,255,255,.9); }
+    .apple-row.main-row .apple-left .al-ico { filter: none; }
+
+    /* code block */
+    .code-block {
+      background: var(--dark2);
+      border-radius: 8px; padding: 28px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px; line-height: 1.8;
+      color: #C8C0B4; margin-bottom: 24px;
+      overflow-x: auto;
+    }
+    .code-block .comment { color: rgba(200,192,180,.4); }
+    .code-block .cmd { color: #E8A87C; }
+    .code-block .str { color: #7FBFB0; }
+    .code-block .flag { color: #9BB5D9; }
+
+    /* deploy steps */
+    .deploy-steps {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .ds {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ds:last-child { border-bottom: none; }
+    .ds-num {
+      width: 36px; height: 36px; min-width: 36px;
+      background: var(--dark); color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600;
+    }
+    .ds-body h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .ds-body p { font-size: 14px; color: var(--muted); }
+
+    /* ── RESULT ── */
+    .result {
+      background: var(--dark);
+      padding: 80px 48px;
+    }
+    .result-inner { max-width: 1200px; margin: 0 auto; }
+    .result-inner .eyebrow {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,.35); margin-bottom: 24px;
+    }
+    .result-inner h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      color: #fff; font-weight: 500;
+      line-height: 1.1; margin-bottom: 64px;
+    }
+    .result-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px; overflow: hidden;
+    }
+    .result-cell {
+      background: var(--dark2);
+      padding: 40px 32px;
+    }
+    .result-cell .rc-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 52px; color: var(--orange);
+      display: block; line-height: 1;
+    }
+    .result-cell .rc-label {
+      font-size: 14px; color: rgba(255,255,255,.5);
+      margin-top: 10px; line-height: 1.5;
+    }
+
+    .compare {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 48px;
+    }
+    .compare-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px; padding: 32px;
+    }
+    .compare-card h4 {
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.35); margin-bottom: 20px;
+    }
+    .compare-card ul { list-style: none; }
+    .compare-card ul li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: 15px; color: rgba(255,255,255,.7);
+      display: flex; justify-content: space-between;
+    }
+    .compare-card ul li:last-child { border-bottom: none; }
+    .compare-card ul li span { color: var(--orange); font-weight: 500; }
+    .compare-card.ai-card { border-color: rgba(200,94,36,.3); }
+
+    /* ── TAKEAWAY ── */
+    .takeaway {
+      max-width: 1200px; margin: 0 auto;
+      padding: 80px 48px;
+      display: grid; grid-template-columns: 1fr 2fr;
+      gap: 80px; border-bottom: 1px solid var(--border);
+    }
+    .takeaway-left h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 500; line-height: 1.2;
+    }
+    .tklist { list-style: none; }
+    .tklist li {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .tklist li:last-child { border-bottom: none; }
+    .tklist-ico {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--orange-light); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .tklist-body h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .tklist-body p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta {
+      max-width: 1200px; margin: 0 auto;
+      padding: 80px 48px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 48px; align-items: center;
+    }
+    .cta h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 500; line-height: 1.2;
+    }
+    .cta-links { display: flex; flex-direction: column; gap: 12px; }
+    .cta-link {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+      padding: 14px 20px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 6px; transition: all .2s; white-space: nowrap;
+    }
+    .cta-link:hover { border-color: var(--orange); }
+    .cta-link .cl-ico { font-size: 18px; }
+    .cta-link .cl-text { font-size: 14px; font-weight: 500; color: var(--text); }
+    .cta-link .cl-arr { margin-left: auto; color: var(--muted); font-size: 16px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer .flogo {
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    footer .fcopy { font-size: 13px; color: rgba(255,255,255,.25); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 72px 24px 56px; gap: 40px; }
+      .hero-stats { gap: 24px; }
+      .intro { padding: 56px 24px; }
+      .steps-header { padding: 48px 24px 32px; }
+      .step { grid-template-columns: 1fr; gap: 24px; padding: 0 24px 48px; }
+      .step-num .num { font-size: 40px; }
+      .result { padding: 56px 24px; }
+      .result-grid { grid-template-columns: 1fr; }
+      .compare { grid-template-columns: 1fr; }
+      .takeaway { grid-template-columns: 1fr; gap: 40px; padding: 56px 24px; }
+      .cta { grid-template-columns: 1fr; gap: 32px; padding: 56px 24px; }
+      footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">TRUE AI AGENCY</div>
+  <ul class="nav-links">
+    <li><a href="#steps">Шаги</a></li>
+    <li><a href="#result">Результат</a></li>
+    <li><a href="#takeaway">Выводы</a></li>
+  </ul>
+  <a href="https://tonytrue92-beep.github.io/true-ai-agency/" class="nav-btn">Открыть сайт →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-meta">Кейс · Март 2026</div>
+    <h1>От запроса<br>до <em>живого сайта</em><br>за одну сессию</h1>
+  </div>
+  <div class="hero-right">
+    <p>Как мы с AI-агентом прошли путь от «проанализируй рынок» до задеплоенного лендинга — без дизайнера, разработчика и агентства.</p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="n">~80</span>
+        <span class="l">минут</span>
+      </div>
+      <div class="hstat">
+        <span class="n">5</span>
+        <span class="l">шагов</span>
+      </div>
+      <div class="hstat">
+        <span class="n">0₽</span>
+        <span class="l">подрядчикам</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <p>Один запрос в чат запустил цепочку: ресёрч рынка → позиционирование → продуктовая линейка → лендинг → деплой. Всё в одной сессии, без переключения между инструментами.</p>
+</div>
+
+<!-- STEPS -->
+<div id="steps">
+  <div class="steps-header">
+    <div class="eyebrow">Как это происходило</div>
+    <h2>Пять шагов от идеи<br>до результата</h2>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-num">
+      <span class="num">01</span>
+      <span class="step-tag">Ресёрч</span>
+    </div>
+    <div class="step-body">
+      <h3>Анализ рынка AI-агентов в России</h3>
+      <p>Агент открыл браузер, прошёлся по Яндексу, зашёл на wikibot.pro, generation-ai.ru, botech.pro, vc.ru/ai. Собрал реальные кейсы 2025 года и проанализировал рекламные объявления конкурентов.</p>
+
+      <div class="query">
+        <div class="query-label">Запрос</div>
+        <p>«Пройди и собери информацию по разным источникам где сейчас модно применять агентов на базе openclaw на российском рынке, чтобы на основе этого мы разработали перечень услуг нашего агентства»</p>
+      </div>
+
+      <div class="findings">
+        <div class="finding">
+          <span class="tag">🔥🔥🔥 Горячо</span>
+          <div class="heat"></div>
+          <h4>Клиентская поддержка</h4>
+          <p>Smartavia: 75% без оператора. WinWork: CSI 93%. Skillfactory: 40% без оператора.</p>
+        </div>
+        <div class="finding">
+          <span class="tag">🔥🔥 Актуально</span>
+          <h4>Финансы</h4>
+          <p>Займер — взыскание. Альфа-банк — RAG для call-центра. Совкомбанк — ИИ в CRM.</p>
+        </div>
+        <div class="finding">
+          <span class="tag">🔥🔥 Актуально</span>
+          <h4>B2B / RAG</h4>
+          <p>КНАУФ — умный FAQ для дистрибьюторов. Базы знаний вместо звонков.</p>
+        </div>
+        <div class="finding">
+          <span class="tag">⚠️ Перегрет</span>
+          <h4>Telegram-боты МСБ</h4>
+          <p>Много дешёвых игроков. Нужно уходить в "умные агенты" с памятью.</p>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-label">Главный вывод</div>
+        <p>Между дешёвыми ботами по скрипту и тяжёлым enterprise — огромная дыра для умных агентов МСБ с реальной памятью и инструментами.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-num">
+      <span class="num">02</span>
+      <span class="step-tag">Позиционирование</span>
+    </div>
+    <div class="step-body">
+      <h3>Где занять место на рынке</h3>
+      <p>На основе ресёрча сформулировали ключевое отличие от конкурентов. Не описание функций — а разговор на языке результата.</p>
+
+      <div class="insight">
+        <div class="insight-label">Позиционирование</div>
+        <p>Не «мы делаем ботов» → <strong>«Мы строим AI-команды которые работают вместо сотрудников»</strong></p>
+      </div>
+
+      <div class="findings">
+        <div class="finding">
+          <h4>Классический бот</h4>
+          <p>Работает по скрипту. Не помнит клиента. Один сценарий. Интеграции только через конструктор.</p>
+        </div>
+        <div class="finding">
+          <h4>Агент на OpenClaw</h4>
+          <p>Память, характер, реальные инструменты (Notion, CRM, Calendar). Команда агентов с разными ролями.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-num">
+      <span class="num">03</span>
+      <span class="step-tag">Продукт</span>
+    </div>
+    <div class="step-body">
+      <h3>Продуктовая линейка по модели Apple</h3>
+      <p>Задача: клиент покупает основу, а дальше сам понимает что ему не хватает — и докупает. Не навязать, а сделать дополнения очевидными.</p>
+
+      <div class="query">
+        <div class="query-label">Запрос</div>
+        <p>«Давай сделаем пакеты услуг по примеру Apple — человек покупает основной продукт и может уже на него покупать дополнительные аксессуары по сути которые по-любому должны быть»</p>
+      </div>
+
+      <div class="apple-model">
+        <div class="apple-model-head">Продуктовая экосистема</div>
+        <div class="apple-row main-row">
+          <div class="apple-left"><span class="al-ico">📱</span><span>iPhone</span></div>
+          <div class="apple-right">
+            <div class="ar-name">AI-Сотрудник</div>
+            <div class="ar-desc">Один агент, одна роль: Менеджер / Куратор / Поддержка / Контент</div>
+            <div class="ar-price">от 80 000 ₽ разово</div>
+          </div>
+        </div>
+        <div class="apple-row">
+          <div class="apple-left"><span class="al-ico">☁️</span><span>iCloud</span></div>
+          <div class="apple-right">
+            <div class="ar-name">Долгая память</div>
+            <div class="ar-desc">Агент помнит историю каждого клиента — имя, статус, предпочтения</div>
+            <div class="ar-price">от 30 000 ₽</div>
+          </div>
+        </div>
+        <div class="apple-row">
+          <div class="apple-left"><span class="al-ico">🔌</span><span>Кабель</span></div>
+          <div class="apple-right">
+            <div class="ar-name">CRM-интеграция</div>
+            <div class="ar-desc">Каждый лид автоматически в amoCRM, Bitrix или Google Sheets</div>
+            <div class="ar-price">от 40 000 ₽</div>
+          </div>
+        </div>
+        <div class="apple-row">
+          <div class="apple-left"><span class="al-ico">💾</span><span>Прошивка</span></div>
+          <div class="apple-right">
+            <div class="ar-name">База знаний (RAG)</div>
+            <div class="ar-desc">Агент отвечает как эксперт по вашему прайсу и продуктам</div>
+            <div class="ar-price">от 50 000 ₽</div>
+          </div>
+        </div>
+        <div class="apple-row">
+          <div class="apple-left"><span class="al-ico">🛡️</span><span>AppleCare</span></div>
+          <div class="apple-right">
+            <div class="ar-name">Техподдержка</div>
+            <div class="ar-desc">Ежемесячные правки, мониторинг, оптимизация сценариев</div>
+            <div class="ar-price">от 15 000 ₽/мес</div>
+          </div>
+        </div>
+        <div class="apple-row">
+          <div class="apple-left"><span class="al-ico">⌚</span><span>Apple Watch</span></div>
+          <div class="apple-right">
+            <div class="ar-name">Второй агент</div>
+            <div class="ar-desc">Другая роль в команде. Скидка 30% — уже знает вашу экосистему</div>
+            <div class="ar-price">скидка 30% от цены первого</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-num">
+      <span class="num">04</span>
+      <span class="step-tag">Лендинг</span>
+    </div>
+    <div class="step-body">
+      <h3>Написал лендинг с нуля</h3>
+      <p>После ответов на 5 вопросов — агент написал 700 строк HTML/CSS/JS. Один файл, без внешних зависимостей. Тёмный дизайн в стиле Apple, адаптив под мобилку, форма с отправкой в Telegram.</p>
+
+      <div class="query">
+        <div class="query-label">5 вопросов перед стартом</div>
+        <p>«Название, формат на выходе, кейсы, куда ведём CTA, чьё лицо» — агент задал только то что реально влияет на результат.</p>
+      </div>
+
+      <div class="findings">
+        <div class="finding">
+          <h4>8 блоков</h4>
+          <p>Hero → Проблема → Продукт → Аксессуары T1 → T2 → Путь клиента → Пакеты → Антон → Форма</p>
+        </div>
+        <div class="finding">
+          <h4>Форма → Telegram</h4>
+          <p>При сабмите заявка летит напрямую в Telegram через Bot API. Никакого бэкенда.</p>
+        </div>
+        <div class="finding">
+          <h4>Адаптив</h4>
+          <p>Мобильная версия, retina-шрифты, системный стек — грузится мгновенно.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step-num">
+      <span class="num">05</span>
+      <span class="step-tag">Деплой</span>
+    </div>
+    <div class="step-body">
+      <h3>GitHub Pages — бесплатный хостинг за 3 команды</h3>
+      <p>Репозиторий создан, Pages включён через API. Через ~2 минуты сайт был доступен по URL.</p>
+
+      <div class="code-block">
+<span class="comment"># Создаём репозиторий и пушим</span>
+<span class="cmd">gh</span> repo create <span class="str">true-ai-agency</span> <span class="flag">--public</span> <span class="flag">--source=.</span> <span class="flag">--push</span>
+
+<span class="comment"># Включаем GitHub Pages через API</span>
+<span class="cmd">gh</span> api repos/tonytrue92-beep/true-ai-agency/pages \
+  <span class="flag">--method</span> POST \
+  <span class="flag">--field</span> <span class="str">'source[branch]=main'</span> \
+  <span class="flag">--field</span> <span class="str">'source[path]=/'</span>
+
+<span class="comment"># Через ~2 минуты:</span>
+<span class="str">https://tonytrue92-beep.github.io/true-ai-agency/</span> <span class="comment">→ 200 OK</span>
+      </div>
+
+      <div class="deploy-steps">
+        <div class="ds">
+          <div class="ds-num">1</div>
+          <div class="ds-body">
+            <h4>git init + commit</h4>
+            <p>Один HTML-файл, один коммит.</p>
+          </div>
+        </div>
+        <div class="ds">
+          <div class="ds-num">2</div>
+          <div class="ds-body">
+            <h4>gh repo create</h4>
+            <p>Публичный репо создан и запушен через GitHub CLI.</p>
+          </div>
+        </div>
+        <div class="ds">
+          <div class="ds-num">3</div>
+          <div class="ds-body">
+            <h4>Pages API</h4>
+            <p>GitHub Pages включён программно — без ручной настройки в браузере.</p>
+          </div>
+        </div>
+        <div class="ds">
+          <div class="ds-num">4</div>
+          <div class="ds-body">
+            <h4>Проверка 200 OK</h4>
+            <p>curl вернул 200 — сайт живёт.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="result" id="result">
+  <div class="result-inner">
+    <div class="eyebrow">Итог</div>
+    <h2>Цифры говорят сами за себя</h2>
+    <div class="result-grid">
+      <div class="result-cell">
+        <span class="rc-num">~80</span>
+        <div class="rc-label">минут от первого запроса<br>до живого сайта</div>
+      </div>
+      <div class="result-cell">
+        <span class="rc-num">5</span>
+        <div class="rc-label">шагов без переключения<br>между инструментами</div>
+      </div>
+      <div class="result-cell">
+        <span class="rc-num">0₽</span>
+        <div class="rc-label">потрачено на подрядчиков,<br>дизайнеров и разработку</div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="compare-card">
+        <h4>Через людей</h4>
+        <ul>
+          <li>Маркетолог-аналитик <span>30–50К₽</span></li>
+          <li>Копирайтер <span>15–30К₽</span></li>
+          <li>Верстальщик <span>30–80К₽</span></li>
+          <li>Сроки <span>2–4 недели</span></li>
+          <li>Итого <span>75–160К₽</span></li>
+        </ul>
+      </div>
+      <div class="compare-card ai-card">
+        <h4>С AI-агентом</h4>
+        <ul>
+          <li>Ресёрч рынка <span>~40 мин</span></li>
+          <li>Продукт + позиционирование <span>~20 мин</span></li>
+          <li>Написание лендинга <span>~15 мин</span></li>
+          <li>Деплой <span>~5 мин</span></li>
+          <li>Стоимость <span>0₽</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAKEAWAY -->
+<div class="takeaway" id="takeaway">
+  <div class="takeaway-left">
+    <h2>Что из этого следует</h2>
+  </div>
+  <div class="takeaway-right">
+    <ul class="tklist">
+      <li>
+        <div class="tklist-ico">🔍</div>
+        <div class="tklist-body">
+          <h4>Агент — не генератор текста</h4>
+          <p>Он исследует рынок через реальные сайты, анализирует конкурентов, делает выводы. Это операционная работа, а не копирайтинг.</p>
+        </div>
+      </li>
+      <li>
+        <div class="tklist-ico">⚙️</div>
+        <div class="tklist-body">
+          <h4>Один инструмент — весь стек</h4>
+          <p>Ресёрч → стратегия → продукт → код → деплой. Без переключения между приложениями, фрилансерами и платформами.</p>
+        </div>
+      </li>
+      <li>
+        <div class="tklist-ico">📈</div>
+        <div class="tklist-body">
+          <h4>Скорость решает</h4>
+          <p>То что раньше занимало недели — занимает часы. Можно тестировать гипотезы за день, а не за месяц.</p>
+        </div>
+      </li>
+      <li>
+        <div class="tklist-ico">💡</div>
+        <div class="tklist-body">
+          <h4>Главное — правильно поставить задачу</h4>
+          <p>Предприниматель формулирует цель и принимает решения. Агент реализует. Это и есть новая модель работы.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Хотите так же?<br>Это и есть<br>наш продукт.</h2>
+  <div class="cta-links">
+    <a href="https://tonytrue92-beep.github.io/true-ai-agency/" class="cta-link">
+      <span class="cl-ico">🌐</span>
+      <span class="cl-text">Открыть лендинг агентства</span>
+      <span class="cl-arr">↗</span>
+    </a>
+    <a href="https://t.me/tonytruee" class="cta-link">
+      <span class="cl-ico">✈️</span>
+      <span class="cl-text">Написать Антону в Telegram</span>
+      <span class="cl-arr">↗</span>
+    </a>
+    <a href="https://github.com/tonytrue92-beep/true-ai-agency" class="cta-link">
+      <span class="cl-ico">📂</span>
+      <span class="cl-text">Исходник на GitHub</span>
+      <span class="cl-arr">↗</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">TRUE AI AGENCY · 2026</div>
+  <div class="fcopy">Инструмент → Связка → Клиент → Деньги</div>
+</footer>
+
+</body>
+</html>
